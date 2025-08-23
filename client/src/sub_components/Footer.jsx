@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from '../images/webworks_logo-01.png';
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 
 const Footer = () => {
     return (
@@ -20,21 +20,21 @@ const Footer = () => {
 
                     <div className='flex flex-col justify-center space-y-4'>
                         <span className='text-xl tracking-wider font-semibold'>Overview</span>
-                        <div className='flex flex-col space-y-1.5'>
-                            <span className='font-semibold text-gray-600 text-md tracking-wide'>Terms</span>
-                            <span className='font-semibold text-gray-600 text-md tracking-wide'>Privacy Policy</span>
-                            <span className='font-semibold text-gray-600 text-md tracking-wide'>Cookies</span>
-                            <span className='font-semibold text-gray-600 text-md tracking-wide'>Integrations</span>
+                        <div className='flex flex-col space-y-3'>
+                            <span className='font-semibold text-gray-600 text-sm tracking-wide'>Terms</span>
+                            <span className='font-semibold text-gray-600 text-sm tracking-wide'>Privacy Policy</span>
+                            <span className='font-semibold text-gray-600 text-sm tracking-wide'>Cookies</span>
+                            <span className='font-semibold text-gray-600 text-sm tracking-wide'>Integrations</span>
                         </div>
                     </div>
 
                     <div className='flex flex-col justify-center space-y-4'>
                         <span className='text-xl tracking-wider font-semibold text-center'>Customer</span>
-                        <div className='flex flex-col space-y-1.5'>
-                            <span className='font-semibold text-gray-600 text-md tracking-wide'>Product</span>
-                            <span className='font-semibold text-gray-600 text-md tracking-wide'>Pricing</span>
-                            <span className='font-semibold text-gray-600 text-md tracking-wide'>Integrations</span>
-                            <span className='font-semibold text-gray-600 text-md tracking-wide'>Support</span>
+                        <div className='flex flex-col space-y-3'>
+                            <span className='font-semibold text-gray-600 text-sm tracking-wide'>Product</span>
+                            <span className='font-semibold text-gray-600 text-sm tracking-wide'>Pricing</span>
+                            <span className='font-semibold text-gray-600 text-sm tracking-wide'>Integrations</span>
+                            <span className='font-semibold text-gray-600 text-sm tracking-wide'>Support</span>
                         </div>
                     </div>
 
@@ -49,9 +49,6 @@ const Footer = () => {
                             </a>
                             <a href="#" aria-label="LinkedIn" className="p-2 rounded-full hover:bg-gray-100">
                                 <Linkedin className="w-6 h-6 text-blue-700" />
-                            </a>
-                            <a href="#" aria-label="Twitter" className="p-2 rounded-full hover:bg-gray-100">
-                                <Twitter className="w-6 h-6 text-sky-500" />
                             </a>
                         </div>
                     </div>

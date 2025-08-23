@@ -1,6 +1,8 @@
 import React from 'react'
 import Sub_Services from '../sub_components/sub_services'
 import Footer from '../sub_components/Footer'
+import Faqs from '../sub_components/faqs'
+import Testimonals from '../sub_components/testimonals'
 
 const Home = ({ BannerImage }) => {
     return (
@@ -27,6 +29,8 @@ const Home = ({ BannerImage }) => {
             </div>
 
             <Sub_Services />
+            <Faqs />
+            <Testimonals />
             <Footer />
         </>
     )
