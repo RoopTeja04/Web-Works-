@@ -2,7 +2,7 @@ import React from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import Home from './components/Home'
 import Services from './components/Services'
-import About from './components/About'
+import OurWork from "./components/OurWork"
 import Contact from './components/Contact'
 import Logo from './images/webworks_logo-01.png' 
 
@@ -33,7 +33,7 @@ const App = () => {
             Services
           </Link>
           <Link
-            to="/about"
+            to="/our-work"
             className="relative hover:text-black transition duration-300 tracking-wider after:content-[''] after:absolute after:w-0 after:h-[2px] after:left-0 after:-bottom-1 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
           >
             Our Work
@@ -50,7 +50,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/our-work" element={<OurWork />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </>

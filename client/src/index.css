@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+/* index.css or global.css lo add cheyyandi */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    /* horizontal scroll avoid */
+    background: #0b1030;
+    /* dark bg */
+}
+
+#root {
+    min-height: 100vh;
+    overflow-y: auto;
+    /* only one vertical scroll */
+}
