@@ -4,6 +4,10 @@ import { SiAdobeillustrator, SiAdobexd, SiAdobephotoshop, SiTailwindcss, SiGoogl
 import { motion, AnimatePresence } from "framer-motion";
 import * as THREE from 'three';
 import { FaRedoAlt } from "react-icons/fa";
+import RotatedHeadingsProcessSteps from '../sub_components/processSteps';
+import RotatedCompactHeadings from '../sub_components/processSteps';
+import RotatedInteractiveHeadings from '../sub_components/processSteps';
+import RotatedInteractiveExpandingHeadings from '../sub_components/processSteps';
 
 const phrases = ["Creative", "Compelling", "Results-Driven", "User-Centric", "Problem-Solvers", "Goal-Oriented"];
 
@@ -169,6 +173,8 @@ const Services = () => {
                     </motion.div>
                 ))}
             </div>
+
+            <RotatedInteractiveExpandingHeadings />
         </div>
     );
 };
