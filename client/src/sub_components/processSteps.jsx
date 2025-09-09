@@ -2,63 +2,71 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const steps = [
-    { title: "PROJECT STRATEGY", description: "We blend creative vision with strategic foresight to define goals and chart a course to success." },
-    { title: "DESIGN & MOTION", description: "We create immersive visuals that captivate and communicate messages with impact." },
-    { title: "SMOOTH DEVELOPMENT", description: "Seamless design and navigation to engage visitors on any device." },
-    { title: "POWERFUL MARKETING", description: "We craft campaigns that resonate and drive lasting impact." },
-    { title: "ONGOING SUPPORT", description: "Reliable support to keep your website dynamic and impactful." },
-    { title: "FUTURE EVOLUTION", description: "Guiding your brand’s evolution with emerging technologies." },
+    { title: "PROJECT STRATEGY", description: "Every project is a canvas where we blend creative vision with strategic foresight..." },
+    { title: "DESIGN & MOTION", description: "Our team is a collective of artists, visionaries, and technophiles..." },
+    { title: "SMOOTH DEVELOPMENT", description: "We take pride in our meticulous approach, ensuring every element functions seamlessly..." },
+    { title: "POWERFUL MARKETING", description: "We're not just marketers; we're storytellers, data analysts, and strategists..." },
+    { title: "ONGOING SUPPORT", description: "In the ever-evolving digital landscape, your website isn't static..." },
+    { title: "FUTURE EVOLUTION", description: "From immersive experiences to AI-driven personalization, we're your digital architects..." },
 ];
 
 const RotatedInteractiveExpandingHeadings = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(null);
 
-    const baseWidth = "10%";
-    const expandedWidth = "40%";
-    const baseHeight = "100%"; // Minimum height
-    const expandedHeight = "20%"; // Expansion for hover
+    const baseWidth = "180px";
+    const expandedWidth = "400px";
+    const baseHeight = "400px";
 
     return (
-        <div className="bg-black-100 min-h-screen flex flex-col items-center p-10">
+        <div className="bg-gray-900 text-black min-h-screen flex flex-col items-center p-10">
+            <div className="text-center mb-12 relative top-20 w-full">
+                <h3 className="text-md md:text-lg absolute bottom-2 font-semibold tracking-wide uppercase text-gray-600 flex items-center justify-center gap-2">
+                    <span className="w-2 h-2 bg-red-500 rounded-full inline-block"></span> Our Work Flow
+                </h3>
+            </div>
 
-            {/* Horizontal Rotated Step Headings */}
-            <div className="flex space-x-6 mx-20 h-[80vh] bg-white p-6 rounded-md shadow-lg">
+            <div className="flex space-x-6 mx-10 h-[80vh] items-center justify-center">
                 {steps.map((step, idx) => (
                     <motion.div
                         key={idx}
                         onMouseEnter={() => setActiveIndex(idx)}
-                        className="cursor-pointer rounded bg-white text-black flex flex-col items-center justify-center overflow-hidden"
+                        onMouseLeave={() => setActiveIndex(null)}
+                        className="cursor-pointer bg-white rounded-md shadow-md overflow-hidden flex flex-col items-center justify-center p-4"
                         animate={{
                             width: activeIndex === idx ? expandedWidth : baseWidth,
-                            height: activeIndex === idx ? expandedHeight : baseHeight,
-                            boxShadow: activeIndex === idx
-                                ? "0 20px 40px rgba(0,0,0,0.25)"
-                                : "0 5px 15px rgba(0,0,0,0.1)"
                         }}
-                        transition={{ duration: 0.5 }}
+                        transition={{
+                            duration: 0.8,
+                            ease: [0.43, 0.13, 0.23, 0.96],
+                        }}
                         style={{
-                            textAlign: 'center',
                             minHeight: baseHeight,
                         }}
                     >
+                        <span className="text-lg font-semibold text-gray-500 relative -top-15">{idx + 1}</span>
+
                         <motion.div
                             initial={{ rotate: -90 }}
-                            animate={{ rotate: activeIndex === idx ? 0 : -90 }}
-                            transition={{ duration: 0.5 }}
-                            className="font-semibold"
+                            animate={{
+                                rotate: activeIndex === idx ? 0 : -90,
+                            }}
+                            transition={{
+                                duration: 0.8,
+                                ease: [0.43, 0.13, 0.23, 0.96],
+                            }}
+                            className="font-bold text-2xl mt-8 text-start"
                         >
                             {step.title}
                         </motion.div>
 
-                        {/* Show description inside same box on hover */}
                         <AnimatePresence>
                             {activeIndex === idx && (
                                 <motion.div
-                                    initial={{ opacity: 0, y: -10 }}
+                                    initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    transition={{ duration: 0.4 }}
-                                    className="mt-4 text-sm text-gray-700 px-4"
+                                    exit={{ opacity: 0, y: 20 }}
+                                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                                    className="mt-4 text-sm text-gray-700 px-4 text-center"
                                 >
                                     {step.description}
                                 </motion.div>
