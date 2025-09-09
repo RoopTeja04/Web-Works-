@@ -24,7 +24,7 @@ const OurWork = () => {
         <div className="w-full min-h-screen bg-gray-900 text-white flex flex-col justify-center px-10 relative">
             <div className="flex flex-row justify-center items-center pb-10 space-x-40">
                 {/* Left Side: Project Image with Animation */}
-                <div className="flex">
+                <div className="flex relative">
                     <AnimatePresence mode="wait">
                         <motion.img
                             key={project.image}
@@ -38,6 +38,11 @@ const OurWork = () => {
                             transition={{ duration: 0.8 }}
                         />
                     </AnimatePresence>
+
+                    {/* Image Index / Total at Bottom Left */}
+                    <div className="absolute bottom-2 left-2 bg-black/50 text-white px-3 py-1 rounded-md text-sm">
+                        {index + 1} / {projects.length}
+                    </div>
                 </div>
 
                 {/* Right Side: Project Info */}
