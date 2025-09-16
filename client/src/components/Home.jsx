@@ -6,7 +6,7 @@ import Testimonals from '../sub_components/testimonals'
 
 const Home = ({ BannerImage }) => {
     return (
-        <>
+        <div className='overflow-x-hidden'>
             <div className="relative w-full h-[90vh]">
                 <img
                     src="https://www.newgenapps.com/hubfs/Imported_Blog_Media/Website-Design-Background-Feb-09-2022-03-13-55-73-AM.png"
@@ -32,7 +32,7 @@ const Home = ({ BannerImage }) => {
             <Faqs />
             <Testimonals />
             <Footer />
-        </>
+        </div>
     )
 }
 

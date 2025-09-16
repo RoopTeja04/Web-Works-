@@ -1,99 +1,341 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion';
 
-const testimonials = [
-    {
-        name: "Rahul Mehta",
-        role: "Startup Founder",
-        feedback:
-            "WebWorks transformed our outdated website into a sleek, modern platform. Our customer engagement doubled within a month!"
-    },
-    {
-        name: "Ananya Gupta",
-        role: "Digital Marketer",
-        feedback:
-            "I love how fast and reliable their team is. They delivered our landing page in record time without compromising quality."
-    },
-    {
-        name: "David Lee",
-        role: "Entrepreneur",
-        feedback:
-            "The smooth UI/UX design provided by WebWorks really helped my brand look professional. Highly recommended!"
-    },
-    {
-        name: "Priya Sharma",
-        role: "Freelancer",
-        feedback:
-            "Affordable and super responsive. Any time I needed changes, the team was quick to help. Amazing experience!"
-    },
-    {
-        name: "Mohammed Ali",
-        role: "Small Business Owner",
-        feedback:
-            "My e-commerce store is now running flawlessly thanks to WebWorks. Sales have gone up by 40%."
-    },
-    {
-        name: "Sophia Johnson",
-        role: "Tech Enthusiast",
-        feedback:
-            "Clean code, modern design, and great communication. I felt confident working with WebWorks from day one."
-    }
-];
+const Testimonials = () => {
+    const targetRef = useRef(null);
+    const shouldReduceMotion = useReducedMotion();
 
-const Testimonals = () => {
-    const [index, setIndex] = useState(0);
+    // Enhanced scroll tracking with better range
+    const { scrollYProgress } = useScroll({
+        target: targetRef,
+        offset: ["start end", "end start"]
+    });
 
-    const nextTestimonial = () => {
-        setIndex((prev) => (prev + 1) % testimonials.length);
+    // Ultra-smooth spring configuration
+    const springConfig = {
+        stiffness: 300,
+        damping: 50,
+        mass: 1,
+        restDelta: 0.0001
     };
 
-    const prevTestimonial = () => {
-        setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    // Smooth spring-driven scroll progress
+    const smoothProgress = useSpring(scrollYProgress, springConfig);
+
+    // First row: Starts from RIGHT (100%) and moves LEFT (-100%)  
+    const x1 = useTransform(
+        smoothProgress,
+        [0, 1],
+        ["100%", "-100%"],
+        { clamp: false }
+    );
+
+    // Second row: Starts from LEFT (-100%) and moves RIGHT (100%) - opposite direction
+    const x2 = useTransform(
+        smoothProgress,
+        [0, 1],
+        ["-100%", "100%"],
+        { clamp: false }
+    );
+
+    // Subtle parallax for depth
+    const y1 = useTransform(smoothProgress, [0, 1], [0, -30]);
+    const y2 = useTransform(smoothProgress, [0, 1], [0, 30]);
+
+    // Smooth opacity fade
+    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.6, 1, 1, 0.6]);
+
+    const clients = [
+        "THE OCEAN AGENCY",
+        "wework",
+        "SELENE AVIATION",
+        "O POSITIVE",
+        "ModernMD",
+        "SLING SHOT",
+        "HELIAS | 100%",
+        "AWESTRUCK"
+    ];
+
+    const topRowClients = clients.slice(0, 4);
+    const bottomRowClients = clients.slice(4);
+
+    // Smooth entrance animations
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                duration: 0.8,
+                ease: [0.25, 0.25, 0, 1],
+                staggerChildren: 0.1
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: {
+            opacity: 0,
+            y: 60,
+            scale: 0.95
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+                duration: 0.8,
+                ease: [0.25, 0.25, 0, 1],
+                type: "spring",
+                stiffness: 100,
+                damping: 15
+            }
+        }
+    };
+
+    // Ultra-smooth card animations
+    const cardVariants = {
+        hidden: {
+            opacity: 0,
+            y: 80,
+            rotateX: 15,
+            scale: 0.9
+        },
+        visible: (i) => ({
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            scale: 1,
+            transition: {
+                duration: 1.2,
+                delay: i * 0.08,
+                ease: [0.25, 0.46, 0.45, 0.94],
+                type: "spring",
+                stiffness: 80,
+                damping: 20
+            }
+        })
+    };
+
+    // Smooth hover effects
+    const smoothHover = {
+        scale: 1.02,
+        y: -8,
+        boxShadow: "0 20px 40px -8px rgba(0, 0, 0, 0.3)",
+        transition: {
+            duration: 0.4,
+            ease: [0.25, 0.46, 0.45, 0.94]
+        }
+    };
+
+    const textHover = {
+        scale: 1.05,
+        transition: {
+            duration: 0.3,
+            ease: "easeOut"
+        }
     };
 
     return (
-        <div className="max-w-4xl mx-auto my-12 px-4">
-            <h2 className="text-2xl font-bold text-center mb-8">What Our Clients Say</h2>
-
-            <div className="relative bg-gray-100 shadow-lg rounded-2xl px-10 py-10 overflow-hidden">
-                <AnimatePresence mode="wait">
+        <div className="min-h-screen bg-[#2a3f6b] text-white">
+            {/* Main Section with minimal bottom padding */}
+            <motion.div
+                className="px-8 md:px-16 lg:px-24 flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-20 pt-20 pb-2"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+            >
+                {/* Left Side */}
+                <motion.div
+                    className="flex flex-col max-w-sm lg:max-w-md"
+                    variants={itemVariants}
+                >
                     <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -50 }}
-                        transition={{ duration: 0.5 }}
-                        className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center"
+                        className="text-xs uppercase tracking-[0.2em] flex items-center gap-3 text-gray-300 mb-8"
+                        variants={itemVariants}
                     >
-                        <div className="md:col-span-1 text-center md:text-left">
-                            <h3 className="font-semibold text-lg">{testimonials[index].name}</h3>
-                            <p className="text-sm text-gray-500">{testimonials[index].role}</p>
-                        </div>
-
-                        <div className="md:col-span-2">
-                            <p className="text-gray-700 italic">"{testimonials[index].feedback}"</p>
-                        </div>
+                        <motion.span
+                            className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0"
+                            animate={shouldReduceMotion ? {} : {
+                                scale: [1, 1.3, 1],
+                                opacity: [1, 0.8, 1]
+                            }}
+                            transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                        />
+                        <span>TRUE PARTNERSHIP</span>
                     </motion.div>
-                </AnimatePresence>
+
+                    <motion.p
+                        className="text-lg md:text-xl lg:text-2xl leading-relaxed text-gray-200 font-light"
+                        variants={itemVariants}
+                    >
+                        At Webworks, we don't just deliver projects, we build lasting partnerships.
+                        Through collaboration, transparency, and a shared drive for innovation, we craft
+                        digital experiences that help brands stand out and scale with confidence.
+                    </motion.p>
+                </motion.div>
+
+                {/* Right Side - Typography */}
+                <motion.div
+                    className="flex flex-col items-start lg:items-center"
+                    variants={itemVariants}
+                >
+                    <div className="font-black leading-[0.85] tracking-tight">
+                        <motion.div
+                            className="text-5xl md:text-6xl lg:text-7xl opacity-70 lowercase mb-1"
+                            variants={itemVariants}
+                        >
+                            we don't
+                        </motion.div>
+                        <motion.div
+                            className="text-8xl md:text-9xl lg:text-10xl xl:text-11xl uppercase mb-1"
+                            variants={itemVariants}
+                        >
+                            JUST WORK
+                        </motion.div>
+                        <motion.div
+                            className="text-8xl md:text-9xl lg:text-10xl xl:text-11xl uppercase mb-1"
+                            variants={itemVariants}
+                        >
+                            BRANDS
+                        </motion.div>
+                        <motion.div
+                            className="flex items-baseline gap-4 mb-1"
+                            variants={itemVariants}
+                        >
+                            <span className="text-5xl md:text-6xl lg:text-7xl opacity-70 lowercase">we</span>
+                            <motion.span
+                                className="text-8xl md:text-9xl lg:text-10xl xl:text-11xl uppercase"
+                                animate={shouldReduceMotion ? {} : {
+                                    textShadow: [
+                                        "0 0 0px rgba(239, 68, 68, 0)",
+                                        "0 0 15px rgba(239, 68, 68, 0.4)",
+                                        "0 0 0px rgba(239, 68, 68, 0)"
+                                    ]
+                                }}
+                                transition={{
+                                    duration: 4,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                }}
+                            >
+                                JAM
+                            </motion.span>
+                            <span className="text-5xl md:text-6xl lg:text-7xl opacity-70 lowercase">with</span>
+                        </motion.div>
+                        <motion.div
+                            className="text-5xl md:text-6xl lg:text-7xl opacity-70 lowercase"
+                            variants={itemVariants}
+                        >
+                            them
+                        </motion.div>
+                    </div>
+                </motion.div>
+            </motion.div>
+
+            {/* Ultra-Smooth Horizontal Scroll Carousel - Reduced height and positioned higher */}
+            <div
+                ref={targetRef}
+                className="relative h-[60vh]"
+            >
+                <motion.div
+                    className="sticky top-0 h-screen flex flex-col justify-start pt-16 gap-6 overflow-hidden px-8"
+                    style={{ opacity }}
+                >
+                    {/* TOP ROW - Starts from RIGHT, moves LEFT (100% → -100%) */}
+                    <motion.div
+                        style={{ x: x1, y: y1 }}
+                        className="flex gap-6 will-change-transform"
+                    >
+                        {topRowClients.map((client, index) => (
+                            <motion.div
+                                key={`top-${index}`}
+                                custom={index}
+                                variants={cardVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                whileHover={smoothHover}
+                                viewport={{ once: true, amount: 0.2 }}
+                                className="bg-[#1e2a4a] rounded-xl p-6 h-44 flex items-center justify-center text-white font-bold text-center cursor-pointer min-w-[380px] flex-shrink-0 will-change-transform"
+                                style={{
+                                    backfaceVisibility: 'hidden',
+                                    perspective: 1000,
+                                    transformStyle: 'preserve-3d'
+                                }}
+                            >
+                                <motion.span
+                                    className="text-xl md:text-2xl lg:text-3xl leading-tight whitespace-nowrap select-none"
+                                    whileHover={textHover}
+                                >
+                                    {client}
+                                </motion.span>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+
+                    {/* BOTTOM ROW - Starts from LEFT, moves RIGHT (-100% → 100%) */}
+                    <motion.div
+                        style={{ x: x2, y: y2 }}
+                        className="flex gap-6 will-change-transform"
+                    >
+                        {bottomRowClients.map((client, index) => (
+                            <motion.div
+                                key={`bottom-${index}`}
+                                custom={index + 4}
+                                variants={cardVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                whileHover={smoothHover}
+                                viewport={{ once: true, amount: 0.2 }}
+                                className="bg-[#1e2a4a] rounded-xl p-6 h-44 flex items-center justify-center text-white font-bold text-center cursor-pointer min-w-[380px] flex-shrink-0 will-change-transform"
+                                style={{
+                                    backfaceVisibility: 'hidden',
+                                    perspective: 1000,
+                                    transformStyle: 'preserve-3d'
+                                }}
+                            >
+                                <motion.span
+                                    className="text-xl md:text-2xl lg:text-3xl leading-tight whitespace-nowrap select-none"
+                                    whileHover={textHover}
+                                >
+                                    {client}
+                                </motion.span>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </motion.div>
             </div>
 
-            <div className="flex justify-center items-center gap-6 mt-6">
-                <button
-                    onClick={prevTestimonial}
-                    className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition cursor-pointer"
+            {/* Bottom Section */}
+            <motion.div
+                className="text-center py-20 px-8 bg-[#2a3f6b]"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                    duration: 1,
+                    ease: [0.25, 0.46, 0.45, 0.94]
+                }}
+            >
+                <motion.p
+                    className="text-gray-400 text-lg md:text-xl lg:text-2xl"
+                    animate={shouldReduceMotion ? {} : {
+                        opacity: [0.7, 1, 0.7]
+                    }}
+                    transition={{
+                        duration: 5,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                    }}
                 >
-                    <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
-                    onClick={nextTestimonial}
-                    className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition cursor-pointer"
-                >
-                    <ChevronRight className="w-5 h-5" />
-                </button>
-            </div>
+                    Trusted by 500+ companies that believe in authentic partnerships
+                </motion.p>
+            </motion.div>
         </div>
     );
-}
+};
 
-export default Testimonals
+export default Testimonials;
