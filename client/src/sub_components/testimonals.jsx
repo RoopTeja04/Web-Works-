@@ -197,7 +197,7 @@ const Testimonials = () => {
                             JUST WORK
                         </motion.div>
                         <motion.div
-                            className="text-8xl md:text-9xl lg:text-10xl xl:text-11xl uppercase mb-1"
+                            className="text-8xl md:text-9xl lg:text-10xl xl:text-11xl uppercase mb-1 text-red-600"
                             variants={itemVariants}
                         >
                             BRANDS

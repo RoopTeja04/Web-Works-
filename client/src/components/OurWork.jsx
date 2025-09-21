@@ -21,7 +21,7 @@ const OurWork = () => {
     });
 
     // Horizontal movement controlled by vertical scroll
-    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-73%"]);
 
     return (
         <div
