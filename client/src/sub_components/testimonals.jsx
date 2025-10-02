@@ -267,7 +267,7 @@ const Testimonials = () => {
                 transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
                 <motion.p
-                    className="text-gray-400 text-lg md:text-xl lg:text-2xl"
+                    className="text-white font-semibold text-lg md:text-xl lg:text-2xl tracking-wide"
                     animate={shouldReduceMotion ? {} : { opacity: [0.7, 1, 0.7] }}
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                 >

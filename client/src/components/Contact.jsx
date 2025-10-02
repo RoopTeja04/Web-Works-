@@ -188,9 +188,9 @@ const Contact = () => {
                                 <button
                                     key={type}
                                     onClick={() => handleOptionClick(type)}
-                                    className="flex items-center space-x-2 text-white text-xl hover:text-red-500 transition-colors cursor-pointer"
+                                    className="flex items-center space-x-2 text-white text-xl hover:text-cyan-500 transition-colors cursor-pointer"
                                 >
-                                    <div className="w-3 h-3 rounded-full bg-red-500" />
+                                    <div className="w-3 h-3 rounded-full bg-cyan-500" />
                                     <span>{type}</span>
                                 </button>
                             ))}
@@ -203,7 +203,7 @@ const Contact = () => {
                         <div className="flex items-center justify-center relative w-full">
                             <button
                                 onClick={handleBack}
-                                className="absolute left-4 text-white hover:text-red-500 transition-colors p-2"
+                                className="absolute left-4 text-white hover:text-red-500 transition-colors p-2 cursor-pointer"
                             >
                                 <IoArrowBack size={24} />
                             </button>
@@ -212,15 +212,15 @@ const Contact = () => {
                             </h3>
                         </div>
                         <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
-                            <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="First Name *" required className="bg-transparent border-b border-gray-600 p-2 text-white focus:border-red-500 focus:outline-none" />
-                            <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Last Name *" required className="bg-transparent border-b border-gray-600 p-2 text-white focus:border-red-500 focus:outline-none" />
-                            <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Phone (optional)" className="bg-transparent border-b border-gray-600 p-2 text-white focus:border-red-500 focus:outline-none" />
-                            <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Email *" required className="bg-transparent border-b border-gray-600 p-2 text-white focus:border-red-500 focus:outline-none" />
-                            <input type="text" name="company" value={formData.company} onChange={handleInputChange} placeholder="Company *" required className="bg-transparent border-b border-gray-600 p-2 text-white focus:border-red-500 focus:outline-none" />
-                            <input type="text" name="deadline" value={formData.deadline} onChange={handleInputChange} placeholder="Deadline in weeks *" required className="bg-transparent border-b border-gray-600 p-2 text-white focus:border-red-500 focus:outline-none" />
-                            <textarea name="message" value={formData.message} onChange={handleInputChange} placeholder="Your message here..." className="col-span-2 bg-transparent border-b border-gray-600 p-2 text-white focus:border-red-500 focus:outline-none h-32" />
+                            <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="First Name *" required className="bg-transparent border-gray-600 p-2 border-b-2 text-white focus:border-cyan-500 focus:outline-none" />
+                            <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Last Name *" required className="bg-transparent border-b-2 border-gray-600 p-2 text-white focus:border-cyan-500 focus:outline-none" />
+                            <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Phone (optional)" className="bg-transparent border-b-2 border-gray-600 p-2 text-white focus:border-cyan-500 focus:outline-none" />
+                            <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Email *" required className="bg-transparent border-b-2 border-gray-600 p-2 text-white focus:border-cyan-500 focus:outline-none" />
+                            <input type="text" name="company" value={formData.company} onChange={handleInputChange} placeholder="Company *" required className="bg-transparent border-b-2 border-gray-600 p-2 text-white focus:border-cyan-500 focus:outline-none" />
+                            <input type="text" name="deadline" value={formData.deadline} onChange={handleInputChange} placeholder="Deadline in weeks *" required className="bg-transparent border-b-2 border-gray-600 p-2 text-white focus:border-cyan-500 focus:outline-none" />
+                            <textarea name="message" value={formData.message} onChange={handleInputChange} placeholder="Your message here..." className="col-span-2 bg-transparent border-b-2 border-gray-600 p-2 text-white focus:border-cyan-500 focus:outline-none h-32" />
                             <div className="col-span-2 flex justify-end">
-                                <button type="submit" className="bg-red-500 text-white rounded-full w-32 h-32 hover:bg-red-600 transition-colors flex items-center justify-center font-semibold cursor-pointer">
+                                <button type="submit" className="bg-cyan-600 text-white rounded-full w-32 h-32 hover:bg-cyan-500 transition-colors flex items-center justify-center font-semibold cursor-pointer">
                                     SUBMIT
                                 </button>
                             </div>
@@ -233,7 +233,7 @@ const Contact = () => {
     };
 
     return (
-        <div className='min-h-screen bg-[#0a0f2c] p-4 md:p-8 lg:p-12 flex flex-col justify-center items-center relative overflow-x-hidden'>
+        <div className='min-h-screen bg-[#22355a] p-4 md:p-8 lg:p-12 flex flex-col justify-center items-center relative overflow-x-hidden'>
             <div ref={canvasContainerRef} id="canvas-container" className="absolute inset-0 overflow-hidden" />
             <div className='w-full max-w-6xl relative z-10'>
                 {renderStep()}
@@ -242,7 +242,7 @@ const Contact = () => {
                     <div className="flex-grow mx-4">
                         <div className="h-1 bg-gray-700 rounded">
                             <div
-                                className="h-1 bg-red-500 rounded"
+                                className="h-1 bg-cyan-500 rounded"
                                 style={{ width: `${(step / 2) * 100}%` }}
                             />
                         </div>

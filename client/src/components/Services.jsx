@@ -275,7 +275,7 @@ const Services = () => {
     };
 
     return (
-        <div className='min-h-screen bg-gray-900 text-white overflow-x-hidden relative'>
+        <div className='min-h-screen bg-[#22355a] text-white overflow-x-hidden relative'>
             <div ref={canvasContainerRef} className="absolute inset-0 z-0 pointer-events-none" />
 
             <section className="relative z-10 min-h-[100vh] flex flex-col top-34 px-8 md:px-10">
@@ -336,7 +336,7 @@ const Services = () => {
                             }}
                         >
                             <motion.span
-                                className="text-red-500 md:text-8xl w-full"
+                                className="text-cyan-500 md:text-8xl w-full"
                                 animate={{
                                     scale: isAnimating ? [1, 1.1, 1] : 1,
                                     rotateX: isAnimating ? [0, 10, 0] : 0
@@ -387,7 +387,7 @@ const Services = () => {
             <div ref={servicesRef} className="flex flex-col space-y-20 py-16 px-8 relative z-10">
                 <div className="text-center mb-12 relative">
                     <h3 className="text-md md:text-md absolute bottom-2 font-semibold tracking-wide uppercase text-gray-400 flex items-center justify-center gap-2">
-                        <span className="w-2 h-2 bg-red-500 rounded-full inline-block"></span> What We Do
+                        <span className="w-2 h-2 bg-cyan-500 rounded-full inline-block"></span> What We Do
                     </h3>
                 </div>
 

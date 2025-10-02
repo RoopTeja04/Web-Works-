@@ -26,7 +26,7 @@ const OurWork = () => {
     return (
         <div
             ref={targetRef}
-            className="relative h-[400vh] bg-gray-900"
+            className="relative h-[400vh] bg-[#22355a]"
         >
             <div className="sticky top-0 h-screen flex items-center overflow-hidden">
 
@@ -98,7 +98,7 @@ const OurWork = () => {
                     transition={{ delay: 1 }}
                 >
                     <motion.div
-                        className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
+                        className="h-full bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full"
                         style={{ scaleX: scrollYProgress }}
                         transformOrigin="left"
                     />

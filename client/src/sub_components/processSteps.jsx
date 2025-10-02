@@ -61,10 +61,10 @@ const RotatedInteractiveExpandingHeadings = () => {
     }, []);
 
     return (
-        <div className="bg-gray-900 text-black min-h-screen flex flex-col items-center p-10">
+        <div className="bg-gray-200 text-black min-h-screen flex flex-col items-center p-10">
             <div className="text-center mb-12 relative top-20 w-full">
                 <h3 className="text-md md:text-lg absolute bottom-2 font-semibold tracking-wide uppercase text-gray-600 flex items-center justify-center gap-2">
-                    <span className="w-2 h-2 bg-red-500 rounded-full inline-block"></span> Our Work Flow
+                    <span className="w-2 h-2 bg-cyan-500 rounded-full inline-block"></span> Our Work Flow
                 </h3>
             </div>
 
@@ -99,7 +99,7 @@ const RotatedInteractiveExpandingHeadings = () => {
                             boxShadow: [
                                 "0 4px 8px rgba(0,0,0,0.1)",
                                 "0 20px 40px rgba(0,0,0,0.3)",
-                                "0 25px 50px rgba(255,0,0,0.1)"
+                                "0 25px 50px rgba(6,182,212,0.1)" // cyan-500 in rgba with 0.1 opacity
                             ],
                             transition: { duration: 0.3 }
                         }}
@@ -127,7 +127,8 @@ const RotatedInteractiveExpandingHeadings = () => {
                             <motion.span
                                 className="text-lg font-semibold text-gray-500 relative -top-15"
                                 animate={{
-                                    color: activeIndex === idx ? "#ef4444" : "#6b7280",
+                                    color: activeIndex === idx ? "#06B6D4" : "#6b7280",
+                                    fontWeight: activeIndex === idx ? "bold" : "normal",
                                     scale: activeIndex === idx ? 1.2 : 1,
                                     translateZ: activeIndex === idx ? "10px" : "0px"
                                 }}

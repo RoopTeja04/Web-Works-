@@ -5,6 +5,7 @@ import Services from './components/Services'
 import OurWork from "./components/OurWork"
 import Contact from './components/Contact'
 import Logo from './images/webworks_logo-01.png' 
+import './App.css';
 
 const App = () => {
   return (
