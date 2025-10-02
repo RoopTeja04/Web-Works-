@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const services = [
     {
@@ -32,8 +33,10 @@ const services = [
 const SubServices = () => {
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
+    const navigate = useNavigate();
+
     return (
-        <div className="min-h-screen bg-gray-50 text-black">
+        <div className="min-h-screen bg-gray-200 text-black">
             {/* Header Section with Scroll Animations */}
             <div className="pt-20 pb-16 px-8 md:px-16 lg:px-24">
                 <div className="max-w-7xl mx-auto">
@@ -70,7 +73,7 @@ const SubServices = () => {
                                     Come Great
                                 </motion.span>
                                 <motion.span
-                                    className="block text-red-500"
+                                    className="block text-cyan-600"
                                     initial={{ opacity: 0, scale: 0.8 }}
                                     whileInView={{ opacity: 1, scale: 1 }}
                                     viewport={{ once: true }}
@@ -139,7 +142,7 @@ const SubServices = () => {
                                                 ease: "backOut"
                                             }}
                                             animate={{
-                                                color: hoveredIndex === index ? "#ef4444" : "#9ca3af",
+                                                color: hoveredIndex === index ? "#06b6d4" : "#9ca3af",
                                                 scale: hoveredIndex === index ? 1.1 : 1
                                             }}
                                         >
@@ -195,7 +198,7 @@ const SubServices = () => {
 
                                 {/* Enhanced animated underline with scroll trigger */}
                                 <motion.div
-                                    className="mt-8 h-0.5 bg-gradient-to-r from-red-500 via-orange-500 to-red-600 origin-left rounded-full"
+                                    className="mt-8 h-[2.5px] bg-cyan-500 origin-left rounded-full"
                                     initial={{ scaleX: 0, opacity: 0 }}
                                     whileInView={{
                                         scaleX: 0.3,
@@ -230,9 +233,9 @@ const SubServices = () => {
 
             {/* Call-to-action section with scroll animation */}
             <div className="px-8 md:px-16 lg:px-24 pb-20">
-                <div className="max-w-7xl mx-auto">
+                <div className="max-w-8xl mx-auto">
                     <motion.div
-                        className="bg-gradient-to-r from-gray-900 via-black to-gray-900 rounded-2xl p-8 md:p-12 text-center"
+                        className="bg-[#2a3f6b] rounded-2xl p-8 md:p-12 text-center"
                         initial={{ opacity: 0, scale: 0.9, y: 50 }}
                         whileInView={{ opacity: 1, scale: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
@@ -264,16 +267,13 @@ const SubServices = () => {
                             Let's build something that doesn't just work — but works magic.
                         </motion.p>
                         <motion.button
-                            className="bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300"
+                            className="bg-cyan-600 hover:bg-cyan-800 cursor-pointer text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300"
                             initial={{ opacity: 0, scale: 0.8 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.7, duration: 0.5 }}
-                            whileHover={{
-                                scale: 1.05,
-                                boxShadow: "0 10px 30px rgba(239, 68, 68, 0.3)"
-                            }}
                             whileTap={{ scale: 0.95 }}
+                            onClick={() => navigate("/contact")}
                         >
                             Let's Make It Happen
                         </motion.button>

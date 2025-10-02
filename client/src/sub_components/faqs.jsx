@@ -38,7 +38,7 @@ const FAQs = () => {
     };
 
     return (
-        <div className="max-w-2xl mx-auto my-24 p-6 flex flex-col items-center">
+        <div className="max-w-4xl mx-auto my-24 p-6 flex flex-col items-center">
             <motion.h2
                 className="text-4xl font-bold text-center mb-12"
                 initial={{ opacity: 0, y: 40 }} 
@@ -48,7 +48,7 @@ const FAQs = () => {
                 Frequently Asked Questions
             </motion.h2>
 
-            <div className="min-w-4xl space-y-6">
+            <div className="min-w-6xl space-y-6">
                 {Faqs.map((faq, i) => (
                     <motion.div
                         key={i}
@@ -73,7 +73,7 @@ const FAQs = () => {
                         </button>
 
                         <div
-                            className={`px-4 text-gray-600 transition-all duration-500 ease-in-out overflow-hidden ${openIndex === i ? "max-h-40 pb-4" : "max-h-0"
+                            className={`px-7 text-gray-600 transition-all duration-500 ease-in-out overflow-hidden ${openIndex === i ? "max-h-40 pb-4" : "max-h-0"
                                 }`}
                         >
                             {faq.answer}
